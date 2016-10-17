@@ -38,7 +38,7 @@ convert <- function (d,y) {
 		if (d < 1 | d > 365) {month <- NA; day <- NA};
 	}
 	if (day < 10) {day <- paste0("0",as.character(day))} else day <- as.character(day);
-	date <- paste0(month,day,as.character(y));
+	date <- paste0("x",as.character(y),month,day);
 	return(date)
 }
 
@@ -112,26 +112,24 @@ readnamer <- function (model, yr, mtype) {
 }
 
 writenamer <- function(model, yr, mtype) {
-	basename <- paste0("E:/Data/Research/James/rawdata/",model,"/")
+	basename <- paste0("~/rawdata",model,"/")
 	name <- paste0(basename,"conus_c5.",model,".daily.",mtype,".",yr,".nc");
 }
 
 datanamer <- function(model, yr, mtype) {
-	basename <- paste0("E:/Data/Research/James/output/",model,"/")
+	basename <- paste0("~/output/",model,"/")
 	name <- paste0(basename,"conus_c5.",model,".daily.",mtype,".",yr,".Rdata");
 }
 
 extract <- function () {
 	setwd("E:/Data/Research/James/");
 	modelnames <- c("access1-0_rcp85_r1i1p1","bcc-csm1-1-m_rcp85_r1i1p1","bcc-csm1-1_rcp85_r1i1p1","canesm2_rcp85_r1i1p1","ccsm4_rcp85_r1i1p1","cesm1-bgc_rcp85_r1i1p1","cesm1-cam5_rcp85_r1i1p1","cmcc-cm_rcp85_r1i1p1","cnrm-cm5_rcp85_r1i1p1","csiro-mk3-6-0_rcp85_r1i1p1","fgoals-g2_rcp85_r1i1p1","fio-esm_rcp85_r1i1p1","gfdl-cm3_rcp85_r1i1p1","gfdl-esm2g_rcp85_r1i1p1","gfdl-esm2m_rcp85_r1i1p1","giss-e2-r_rcp85_r1i1p1","hadgem2-ao_rcp85_r1i1p1","hadgem2-cc_rcp85_r1i1p1","hadgem2-es_rcp85_r1i1p1","inmcm4_rcp85_r1i1p1","ipsl-cm5a-mr_rcp85_r1i1p1","ipsl-cm5b-lr_rcp85_r1i1p1","miroc-esm-chem_rcp85_r1i1p1","miroc-esm_rcp85_r1i1p1","miroc5_rcp85_r1i1p1","mpi-esm-lr_rcp85_r1i1p1","mpi-esm-mr_rcp85_r1i1p1","mri-cgcm3_rcp85_r1i1p1","noresm1-m_rcp85_r1i1p1")
-	years <- c(1991,2021,2041);
-	types <- c("tasmax", "tasmin", "pr");
+	years <- c(1990);
+	types <- c("tasmax");
 	for (i in 1:29) {
 		model <- modelnames[i];
-		curdir <- (paste0("E:/Data/Research/James/rawdata/",model,"/"));
-		dir.create(curdir);
-		outdir <- paste0("E:/Data/Research/James/output/",model,"/");
-		dir.create(outdir);
+		curdir <- (paste0("~/rawdata/",model,"/"));
+		outdir <- paste0("~/output/",model,"/");
 		print(paste("Start processing",model,Sys.time()));
 		for (m in 1:1) {
 			mtype <- types[m];
