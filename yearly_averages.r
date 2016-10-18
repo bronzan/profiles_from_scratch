@@ -32,13 +32,13 @@ model <- models[mod]
 fn <- writenamer(model, year, "tasmax")
 
 modelname <- modelnames[mod]  ## here is where you would adjust to iterate through models
+print(paste("Model", model, "at", Sys.time()))
 annualavg <- df[,1:3]
 date_average_all_models <- df[,1:3]
 fn <- 
 
 
 for (d in ydates) {
-	print(paste(d, "at", Sys.time()))
 	dfsubset <- df[,substr(colnames(df),6,10) == d]
 	date_average <- rowMeans(dfsubset)
 	annualavg <- cbind(annualavg, date_average)
@@ -48,6 +48,6 @@ for (d in ydates) {
 }
 
 annualavg <- annualavg[,2:ncol(annualavg)]
-save(annualavg, file=paste0("annual_profile_", year, "_", modelname, ".", "RData"))
+save(annualavg, file=paste0("model_profiles/annual_profile_", year, "_", modelname, ".", "RData"))
 
 }
