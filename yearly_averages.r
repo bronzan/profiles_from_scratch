@@ -19,23 +19,23 @@ for (m in 1:12) {
 
 
 writenamer <- function(model, yr, mtype) {
-	basename <- paste0("~/rawdata/",model,"/")
-	name <- paste0(basename,"conus_c5.",model,".daily.",mtype,".",yr,".nc");
+	basename <- paste0("tasmax/")
+	name <- paste0(basename,"conus_c5.",model,".daily.",yr,".",mtype,".Rdata");
 }
 
 
-year <- "2100" ## Here is where you would adjust to iterate through 20-year periods
+year <- "2080" ## Here is where you would adjust to iterate through 20-year periods
 
-for (mod in 1:length(list.files("tasmax"))) {
+for (mod in 18:22) {
 # loop through dates, assemble data frame of daily averages per year.
 model <- models[mod]
 fn <- writenamer(model, year, "tasmax")
 
 modelname <- modelnames[mod]  ## here is where you would adjust to iterate through models
 print(paste("Model", model, "at", Sys.time()))
+load(fn)
 annualavg <- df[,1:3]
 date_average_all_models <- df[,1:3]
-fn <- 
 
 
 for (d in ydates) {
