@@ -27,7 +27,7 @@ model_medians <- coord
 ## annual_profile_2100_access1-0.RData
 
 
-for (d in 40:365) {
+for (d in 1:365) {
 	start.time <- Sys.time()
 	day <- ydates[d]
 	print(paste("** Started", day, "at", start.time))
