@@ -26,7 +26,7 @@ writenamer <- function(model, yr, mtype) {
 
 year <- "2080" ## Here is where you would adjust to iterate through 20-year periods
 
-for (mod in 18:22) {
+for (mod in 1:29) {
 # loop through dates, assemble data frame of daily averages per year.
 model <- models[mod]
 fn <- writenamer(model, year, "tasmax")
@@ -35,7 +35,7 @@ modelname <- modelnames[mod]  ## here is where you would adjust to iterate throu
 print(paste("Model", model, "at", Sys.time()))
 load(fn)
 annualavg <- df[,1:3]
-date_average_all_models <- df[,1:3]
+
 
 
 for (d in ydates) {
@@ -47,7 +47,6 @@ for (d in ydates) {
 
 }
 
-annualavg <- annualavg[,2:ncol(annualavg)]
 save(annualavg, file=paste0("model_profiles/annual_profile_", year, "_", modelname, ".", "RData"))
 
 }
